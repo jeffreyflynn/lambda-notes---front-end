@@ -72,17 +72,13 @@ class Login extends Component {
     loginError: false
   }
 
-  componentDidMount() { document.getElementById('background').classList.add('background') }
-
-  componentWillUnmount() { document.getElementById('background').classList.remove('background') }
-
   handleLogin = () => {
     const { username, password } = this.state;
     axios
       .post("https://lambdanotes-jeffreyflynn.herokuapp.com/api/login", { username, password })
       .then(res => localStorage.setItem('Authorization', res.data.token))
       .then(redirect => this.props.history.push('/home'))
-      // .then(img => document.getElementById('background').classList.remove('background'))
+      .then(img => document.getElementById('background').classList.remove('background'))
       .then(state => this.setState({ username: "", password: "" }))
       .catch(err => this.setState({ loginError: true }))
   }
