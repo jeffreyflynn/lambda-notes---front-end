@@ -45,10 +45,10 @@ class NavColumn extends Component {
     )
   }
 
-  handleLogout = () => {
-    localStorage.removeItem('Authorization')
-    this.props.history.push('/')
-    document.getElementById('background').classList.remove('background')
+  handleLogout = async () => {
+    await localStorage.removeItem('Authorization')
+    await document.getElementById('background').classList.add('background')
+    await this.props.history.push('/')
     if (!this.state.collapsed) this.setState({ collapsed: true })
   }
 
@@ -106,7 +106,7 @@ class NavColumn extends Component {
             <NavItem className="col-12 p-0">
               {this.handleCSV()}
             </NavItem>
-            <NavItem className="col-12 p-0">
+            <NavItem onClick={() => this.handleLogout()} className="col-12 p-0">
               <Button onClick={() => this.handleLogout()} className="Nav__ButtonsContainer--navButton px-0">Logout</Button>
             </NavItem>
           </Nav>
@@ -129,9 +129,9 @@ class NavColumn extends Component {
                 <CSVLink data={data} headers={headers} filename={"my-notes.csv"} id="CSV-Tooltip" className="p-0 NavRow__Link">
                   <NavItem>Export Notes to CSV</NavItem>
                 </CSVLink>
-                <Link className="p-0 NavRow__Link" onClick={() => this.handleLogout()} to="" >
-                  <NavItem>Logout</NavItem>
-                </Link>
+                {/* <Link className="p-0 NavRow__Link" onClick={() => this.handleLogout()} to="" > */}
+                  <NavItem onClick={() => this.handleLogout()}>Logout</NavItem>
+                {/* </Link> */}
               </Nav>
             </Collapse>
           </Navbar>

@@ -50,11 +50,12 @@ const Button = glamorous.button({
   borderRadius: '3px',
   backgroundColor: 'transparent',
   color: 'white',
-  fontWeight: 600,
+  fontWeight: 700,
+  textShadow: '1px 1px gray',
   zIndex: 333,
   border: '1px solide white',
-  ':hover': { color: 'black', backgroundColor: 'white', cursor: 'pointer' },
-  ':focus': { color: 'black', backgroundColor: 'white' }
+  ':hover': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', cursor: 'pointer' },
+  ':focus': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)' }
 });
 
 const shakeAnimation = keyframes`${headShake}`;
@@ -71,6 +72,8 @@ class Login extends Component {
     tooltipUsername: false,
     loginError: false
   }
+
+  componentDidMount() { document.getElementById('background').classList.add('background') }
 
   handleLogin = () => {
     const { username, password } = this.state;
