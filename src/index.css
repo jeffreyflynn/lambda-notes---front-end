@@ -44,6 +44,20 @@ body {
   text-shadow: 1px 1px gray;
 }
 
+.icon {
+  height: 25px;
+  width: 25px;
+}
+
+.react-google-oauth-button-iconWrapper {
+  background-color: rgba(255, 255, 255, 0.61) !important;
+}
+
+.react-google-oauth-button-icon {
+  z-index: 5555;
+  text-shadow: 1px 1px gray !important;
+}
+
 /* dragula */
 .gu-mirror {
   position: fixed !important;

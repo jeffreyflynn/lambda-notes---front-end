@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label } from 'reactstrap'; // Input, Button
+import { Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Tooltip } from 'reactstrap'; // Input, Button
 import { headShake } from 'react-animations';
 import styled, { keyframes } from 'styled-components';
+import FaQuestionCircleO from 'react-icons/lib/fa/question-circle-o';
 import glamorous from 'glamorous';
+import { GoogleAPI, GoogleLogin } from 'react-google-oauth';
+// import FacebookLoginWithButton from 'react-facebook-login';
 
 const Container = glamorous.div({
   position: 'absolute',
@@ -58,6 +61,22 @@ const Button = glamorous.button({
   ':focus': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)' }
 });
 
+const Icon = glamorous.div({
+  zIndex: 333,
+  color: 'white',
+  position: 'fixed',
+  top: 10,
+  right: 20,
+  ':hover': { cursor: 'pointer', transform: 'scale(1.25)' }
+});
+
+const Google = glamorous.div({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '1% auto'
+})
+
 const shakeAnimation = keyframes`${headShake}`;
 const Wrapper = styled.section`
   animation: 1s ${shakeAnimation};
@@ -69,12 +88,14 @@ class Login extends Component {
     modal: true,
     username: "",
     password: "",
-    tooltipUsername: false,
+    tooltipQuestion: false,
     loginError: false
   }
 
   componentDidMount() { document.getElementById('background').classList.add('background') }
 
+  toggleTooltip = () => { this.setState({ tooltipQuestion: !this.state.tooltipQuestion })
+}
   handleLogin = () => {
     const { username, password } = this.state;
     axios
@@ -89,14 +110,42 @@ class Login extends Component {
   handleNewUser = () => {
     const { username, password } = this.state;
     axios
-      .post("https://lambdanotes-jeffreyflynn.herokuapp.com/api/users", { username, password })
+      .post("https://lambdanotes-jeffreyflynn.herokuapp.com/api/login/register", { username, password })
       .then(user => this.handleLogin())
       .catch(err => this.setState({ loginError: true }))
   }
 
+  handleGoogleAuth = googleUser => {
+    const accessToken = { access_token: googleUser.getAuthResponse().access_token };
+    axios
+      .post("https://lambdanotes-jeffreyflynn.herokuapp.com/api/login/oauth/google", accessToken)
+      .then(res => localStorage.setItem('Authorization', res.data.token))
+      .then(redirect => this.props.history.push('/home'))
+      .then(img => document.getElementById('background').classList.remove('background'))
+      .catch(err => console.log('error!!!', err))
+  }
+
+  // handleFacebookAuth = facebookUser => {
+  //   const accessToken = { access_token: facebookUser.accessToken }
+  //   console.log(accessToken)
+  //   axios
+  //     .post("http://localhost:5050/api/login/oauth/facebook", accessToken) // https://lambdanotes-jeffreyflynn.herokuapp.com/api/login/oauth/facebook
+  //     .then(res => localStorage.setItem('Authorization', res.data.token))
+  //     .then(redirect => this.props.history.push('/home'))
+  //     .then(img => document.getElementById('background').classList.remove('background'))
+  //     .catch(err => console.log('error!!!', err))
+  // }
+
   render() {
     return (
       <Container>
+        <Icon><FaQuestionCircleO className="icon" id="tooltipQuestion" /></Icon>
+        <Tooltip 
+          placement="left" 
+          isOpen={this.state.tooltipQuestion}
+          target="tooltipQuestion"
+          toggle={() => this.toggleTooltip()}
+          >Learn more about this project.</Tooltip>
         <Input 
           type="text"
           name="username"
@@ -117,43 +166,18 @@ class Login extends Component {
           <Button onClick={() => this.handleLogin()}>Login</Button>
           <Button onClick={() => this.handleNewUser()}>Register</Button>
         </ButtonContainer>
-        </Container>
-      /*<div className="PrimaryContainer__login">
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle} className="w-100 d-flex justify-content-center">Login</ModalHeader>
-          {this.state.loginError ? (
-            <Wrapper>
-              <ModalBody className="mx-auto text-danger">You must enter a valid username and password.</ModalBody>
-            </Wrapper>
-          ) : (
-            <ModalBody className="mx-auto">Please login to view your notes.</ModalBody>
-          )}
-          <Form>
-            <FormGroup className="mx-auto col-8">
-              <Input 
-                type="text" 
-                name="username" 
-                id="tooltipUsername" 
-                placeholder="username" 
-                onChange={event => this.setState({ [event.target.name]: event.target.value })}
-              />
-            </FormGroup>
-            <FormGroup className="mx-auto mb-4 col-8">
-              <Input 
-                type="password" 
-                name="password" 
-                id="tooltipPassword" 
-                placeholder="password" 
-                onChange={event => this.setState({ [event.target.name]: event.target.value })}
-                />
-            </FormGroup>
-          </Form>
-          <ModalFooter>
-            <Button onClick={() => this.handleLogin()} className="Nav__ButtonsContainer--navButton" >Login</Button>
-            <Button onClick={() => this.handleNewUser()} className="Nav__ButtonsContainer--navButton bg-secondary" >Register</Button>
-          </ModalFooter>
-        </Modal>
-        </div>*/
+        <Google>
+          <GoogleAPI clientId="962293448005-vas5rftptuuqf6tcueb9ismhmojn32oq.apps.googleusercontent.com">
+            <GoogleLogin 
+              onLoginSuccess={user => this.handleGoogleAuth(user)} 
+              backgroundColor="rgba(255, 255, 255, 0.3)" 
+              width="23%" 
+              className="rounded"
+              /> 
+          </GoogleAPI>
+          {/* <FacebookLoginWithButton appId="1910162869273859" icon="fa-facebook" callback={user => this.handleFacebookAuth(user)} /> */}
+        </Google>
+      </Container>  
     )
   }
 }

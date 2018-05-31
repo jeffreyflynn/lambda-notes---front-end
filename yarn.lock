@@ -5745,11 +5745,32 @@ react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
+react-facebook-login@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-4.0.1.tgz#7d43672ee86e3f2cd9e8758de1e61eb66a212611"
+
+react-google-oauth@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-google-oauth/-/react-google-oauth-1.0.0.tgz#da65f41a4568cc69e44abc0b58fe0b4a97ab228e"
+  dependencies:
+    prop-types "^15.5.10"
+    react "^15.6.1"
+
 react-html-attributes@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/react-html-attributes/-/react-html-attributes-1.4.2.tgz#0d2ccf134fc79b2d3543837dc1591d32b7b903f9"
   dependencies:
     html-element-attributes "^1.0.0"
+
+react-icon-base@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-icon-base/-/react-icon-base-2.1.0.tgz#a196e33fdf1e7aaa1fda3aefbb68bdad9e82a79d"
+
+react-icons@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-2.2.7.tgz#d7860826b258557510dac10680abea5ca23cf650"
+  dependencies:
+    react-icon-base "2.1.0"
 
 react-is@^16.3.1:
   version "16.3.2"
