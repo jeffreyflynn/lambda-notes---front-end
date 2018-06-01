@@ -30,8 +30,10 @@ const Input = glamorous.input({
   fontSize: '1.5rem',
   border: 'none',
   borderBottom: '1px solid #D7D7D7',
+  boxShadow: '0px 1px rgba(42, 192, 197, 0.6)',
   fontWeight: 'bold',
   color: 'white',
+  textShadow: '1px 1px #2AC1C5',
   textAlign: 'center',
   zIndex: 333,
 });
@@ -57,7 +59,7 @@ const Button = glamorous.button({
   textShadow: '1px 1px gray',
   zIndex: 333,
   border: '1px solide #D7D7D7',
-  ':hover': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', cursor: 'pointer' },
+  ':hover': { color: 'black', backgroundColor: 'rgba(42, 192, 197, 0.6)', cursor: 'pointer' },
   ':focus': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)' }
 });
 

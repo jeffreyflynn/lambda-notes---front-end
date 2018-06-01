@@ -2964,6 +2964,10 @@ functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
 
+fuse.js@^3.0.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.2.0.tgz#f0448e8069855bf2a3e683cdc1d320e7e2a07ef4"
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -5772,6 +5776,12 @@ react-icons@^2.2.5, react-icons@^2.2.7:
   dependencies:
     react-icon-base "2.1.0"
 
+react-infinite-scroller@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-infinite-scroller/-/react-infinite-scroller-1.1.4.tgz#176b1a9ca8fdff53eeb34f648c7b0d446459d61b"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-is@^16.3.1:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
@@ -5861,6 +5871,13 @@ react-scripts@1.1.4:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "^1.1.3"
+
+react-search-input@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/react-search-input/-/react-search-input-0.11.3.tgz#3dd1f9fc584b6bc40a6ee133ae042b6fbb7ae8dd"
+  dependencies:
+    fuse.js "^3.0.0"
+    prop-types "^15.5.8"
 
 react-tagsinput@^3.19.0:
   version "3.19.0"

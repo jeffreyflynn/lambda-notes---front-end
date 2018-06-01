@@ -9,12 +9,33 @@ import { Link } from 'react-router-dom';
 import { getNotes, handleReverse, handleOrder, sortTitle, setHome } from '../REDUX/actions';
 import Dragula from 'dragula';
 import TagsInput from 'react-tagsinput';
+import SearchInput, { createFilter } from 'react-search-input';
+import InfiniteScroll from 'react-infinite-scroller';
+import FaSearch from 'react-icons/lib/fa/search'
 import axios from 'axios';
+import glamorous from 'glamorous';
+
+const MainOptions = glamorous.div({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+})
+
+const SearchBar = glamorous.input({
+  margin: 'auth 1%',
+  borderRadius: '3px',
+  backgroundColor: 'rgba(42, 192, 197, 0.15)',
+  // backgroundColor: 'rgb(215, 215, 215, 0.1)',
+  border: 'none',
+  padding: '2%',
+  boxShadow: '1px 1px #D7D7D7'
+})
 
 class PrimaryContainer extends Component {
   constructor() {
     super();
     this.state = { 
+      search: "",
       activeUser: "",
       listView: false,
       listOptions: false,
@@ -22,7 +43,8 @@ class PrimaryContainer extends Component {
       defaultSort: true,
       sortOldest: false,
       sortTitle: false,
-      letsDrag: false
+      letsDrag: false,
+      searchActive: false,
     }
   }
 
@@ -31,6 +53,7 @@ class PrimaryContainer extends Component {
     const token = localStorage.getItem('Authorization')
     const requestOptions = { headers: { Authorization: token } }
     this.props.getNotes(requestOptions)
+    this.setState({ activeNotes: this.props.notes.slice(0, 9) })
   }
 
   dragulaDecorator = (componentBackingInstance) => {
@@ -115,6 +138,7 @@ class PrimaryContainer extends Component {
   }
 
   render() {
+    const searchResults = this.props.notes.filter(note => note.title.includes(this.state.search))
     return (
       <div className="PrimaryContainer">
 
@@ -122,12 +146,30 @@ class PrimaryContainer extends Component {
           <h1 className="PrimaryContainer__header--notecards sticky">
             {this.props.username !== "" ? `${this.props.username}'s Notes:` : "Your Notes:"}
           </h1>
-          <div className="sticky">{ this.viewOrder() }</div>
+          <MainOptions>
+            {this.state.searchActive ? (
+              <SearchBar 
+                name="search"
+                placeholder="Search..."
+                value={this.state.search}
+                onChange={e => this.setState({ [e.target.name]: e.target.value })}
+              />
+            ): null}
+            <FaSearch 
+              className="mr-4 ml-1 icon"
+              onClick={() => this.setState({ searchActive: !this.state.searchActive })}
+              />
+            <div className="sticky">{ this.viewOrder() }</div>
+          </MainOptions>
         </div>
 
         <div className="PrimaryContainer__cardContainer mx-0" ref={this.state.letsDrag ? this.dragulaDecorator : null}>
-          {this.props.notes.map(note => this.cardFactory(note))}
+          {searchResults.map(note => this.cardFactory(note))}
         </div>
+
+        {/* <div className="PrimaryContainer__cardContainer mx-0" ref={this.state.letsDrag ? this.dragulaDecorator : null}>
+          {this.props.notes.map(note => this.cardFactory(note))}
+        </div> */}
 
       </div>
     )
