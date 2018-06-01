@@ -7,7 +7,6 @@ import styled, { keyframes } from 'styled-components';
 import FaQuestionCircleO from 'react-icons/lib/fa/question-circle-o';
 import glamorous from 'glamorous';
 import { GoogleAPI, GoogleLogin } from 'react-google-oauth';
-// import FacebookLoginWithButton from 'react-facebook-login';
 
 const Container = glamorous.div({
   position: 'absolute',
@@ -16,7 +15,6 @@ const Container = glamorous.div({
   left: 0,
   right: 0,
   width: '100%',
-  height: '25%',
   margin: 'auto',
   display: 'flex',
   flexDirection: 'column',
@@ -26,13 +24,12 @@ const Container = glamorous.div({
 });
 
 const Input = glamorous.input({
-  margin: 'auto',
+  margin: '0.5% auto 0.5%',
   width: '23%',
-  height: '20%',
   padding: '0 1% 0 1%',
   fontSize: '1.5rem',
   border: 'none',
-  borderBottom: '1px solid white',
+  borderBottom: '1px solid #D7D7D7',
   fontWeight: 'bold',
   color: 'white',
   textAlign: 'center',
@@ -40,23 +37,26 @@ const Input = glamorous.input({
 });
 
 const ButtonContainer = glamorous.div({
-  margin: 'auto',
-  width: '23%',
-  height: '20%',
+  margin: '1% auto 1%',
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'center', 
+  width: '23%',
+  display: 'flex',
+  justifyContent: 'center',
   zIndex: 333
 });
 
 const Button = glamorous.button({
   width: '47%',
+  margin: '0 auto 0',
+  padding: '0.5%',
   borderRadius: '3px',
   backgroundColor: 'transparent',
   color: 'white',
   fontWeight: 700,
   textShadow: '1px 1px gray',
   zIndex: 333,
-  border: '1px solide white',
+  border: '1px solide #D7D7D7',
   ':hover': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', cursor: 'pointer' },
   ':focus': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)' }
 });
@@ -73,8 +73,22 @@ const Icon = glamorous.div({
 const Google = glamorous.div({
   width: '100%',
   display: 'flex',
+  alignContent: 'center',
   justifyContent: 'center',
-  margin: '1% auto'
+  margin: '0 auto 0'
+})
+
+const Header = glamorous.div({
+  fontFamily: 'Cinzel, serif',
+  fontWeight: '600',
+  fontSize: '5rem',
+  margin: 'auto',
+  position: 'absolute',
+  top: 25,
+  left: '35%',
+  color: '#D7D7D7',
+  zIndex: '101010',
+  textShadow: '2px 2px 4px black'
 })
 
 const shakeAnimation = keyframes`${headShake}`;
@@ -125,20 +139,10 @@ class Login extends Component {
       .catch(err => console.log('error!!!', err))
   }
 
-  // handleFacebookAuth = facebookUser => {
-  //   const accessToken = { access_token: facebookUser.accessToken }
-  //   console.log(accessToken)
-  //   axios
-  //     .post("http://localhost:5050/api/login/oauth/facebook", accessToken) // https://lambdanotes-jeffreyflynn.herokuapp.com/api/login/oauth/facebook
-  //     .then(res => localStorage.setItem('Authorization', res.data.token))
-  //     .then(redirect => this.props.history.push('/home'))
-  //     .then(img => document.getElementById('background').classList.remove('background'))
-  //     .catch(err => console.log('error!!!', err))
-  // }
-
   render() {
     return (
       <Container>
+        <Header>Lambda Notes</Header>
         <Icon><FaQuestionCircleO className="icon" id="tooltipQuestion" /></Icon>
         <Tooltip 
           placement="left" 
@@ -175,7 +179,6 @@ class Login extends Component {
               className="rounded"
               /> 
           </GoogleAPI>
-          {/* <FacebookLoginWithButton appId="1910162869273859" icon="fa-facebook" callback={user => this.handleFacebookAuth(user)} /> */}
         </Google>
       </Container>  
     )

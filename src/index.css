@@ -1,6 +1,7 @@
 @import "./STYLING/index.css";
 /* @import 'node_modules/dragula/dragula.styl'; */
 
+
 html {
   height: 100%;
 }
@@ -16,13 +17,12 @@ body {
 #root {
   height: 100%;
 }
-
 .background {
-  background-image: url("https://i.redditmedia.com/puLaQa7GOF7A3WoKAR3v-mrtVwWSUcgsuz2hHEpkqaU.jpg?s=8aefe5f28f584ea0e6fc7851a88e8b16");
+  background-image: url("./STYLING/openbook.jpg");
   position: fixed;
   width: 100%;
   height: 100%;
-  background-position: top;
+  background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
@@ -41,7 +41,7 @@ body {
 
 .login_input {
   background: transparent;
-  text-shadow: 1px 1px gray;
+  text-shadow: 1px 1px #2AC1C5;
 }
 
 .icon {
@@ -50,13 +50,17 @@ body {
 }
 
 .react-google-oauth-button-iconWrapper {
-  background-color: rgba(255, 255, 255, 0.61) !important;
+  background-color: rgba(255, 255, 255, 0.486) !important;
 }
 
 .react-google-oauth-button-icon {
   z-index: 5555;
   text-shadow: 1px 1px gray !important;
 }
+
+.react-google-oauth-button-main { border-radius: 5px !important; margin: 0 auto 1% !important; }
+.react-google-oauth-button-main:hover { opacity: 1 !important; background-color: rgba(240, 248, 255, 0.548) !important; }
+.react-google-oauth-button-login { background-color: rgba(240, 248, 255, 0.377) !important; }
 
 /* dragula */
 .gu-mirror {
