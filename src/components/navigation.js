@@ -130,7 +130,7 @@ class NavColumn extends Component {
                   <NavItem>Export Notes to CSV</NavItem>
                 </CSVLink>
                 {/* <Link className="p-0 NavRow__Link" onClick={() => this.handleLogout()} to="" > */}
-                  <NavItem onClick={() => this.handleLogout()}>Logout</NavItem>
+                  <NavItem onClick={() => this.handleLogout()} className="NavRow__Link">Logout</NavItem>
                 {/* </Link> */}
               </Nav>
             </Collapse>

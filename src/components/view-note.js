@@ -69,13 +69,13 @@ class ViewNote extends Component {
         <HideAt breakpoint="medium" >
           <div className="d-flex justify-content-between tagEditContainer">
             <TagsInput value={this.state.tags} onChange={this.handleNewTag} />
-            <Button onClick={() => this.saveTags()} className="Nav__ButtonsContainer--navButton col-1 my-0">Save Tags</Button>
+            <Button onClick={() => this.saveTags()} className="Nav__ButtonsContainer--navButton col-2 my-0">Save Tags</Button>
           </div>
         </HideAt>
         <ShowAt breakpoint="medium">
           <div className="d-flex flex-column">
             <TagsInput value={this.state.tags} onChange={this.handleNewTag} />
-            <Button onClick={() => this.saveTags()} className="Nav__ButtonsContainer--navButton col-3 my-3 tagButton">Save Tags</Button>
+            <Button onClick={() => this.saveTags()} className="Nav__ButtonsContainer--navButton my-3">Save Tags</Button>
           </div>
         </ShowAt>
 
