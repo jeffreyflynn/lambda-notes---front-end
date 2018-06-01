@@ -30,7 +30,7 @@ const Input = glamorous.input({
   fontSize: '1.5rem',
   border: 'none',
   borderBottom: '1px solid #D7D7D7',
-  boxShadow: '0px 1px rgba(42, 192, 197, 0.6)',
+  // boxShadow: '0px 1px rgba(42, 192, 197, 0.6)',
   fontWeight: 'bold',
   color: 'white',
   textShadow: '1px 1px #2AC1C5',

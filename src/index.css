@@ -31,7 +31,7 @@ body {
 
 .login_input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: white;
-  text-shadow: 1px 1px #2AC1C5;
+  text-shadow: 1px 1px rgba(42, 192, 197, 0.699);
 }
 .login_input:focus { outline: none; }
 .login_input:focus::-webkit-input-placeholder { opacity: 0; }
@@ -41,7 +41,7 @@ body {
 
 .login_input {
   background: transparent;
-  text-shadow: 1px 1px #2AC1C5;
+  text-shadow: 1px 1px rgba(42, 192, 197, 0.692);
 }
 
 .icon {
