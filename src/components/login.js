@@ -59,7 +59,7 @@ const Button = glamorous.button({
   textShadow: '1px 1px gray',
   zIndex: 333,
   border: '1px solide #D7D7D7',
-  ':hover': { color: 'black', backgroundColor: 'rgba(42, 192, 197, 0.6)', cursor: 'pointer' },
+  ':hover': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', cursor: 'pointer' },
   ':focus': { color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)' }
 });
 
